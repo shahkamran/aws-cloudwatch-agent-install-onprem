@@ -13,7 +13,7 @@ Follow above AWS guide to install the package you have downloaded. For example o
 ```sudo dpkg -i -E ./amazon-cloudwatch-agent.deb```
 
 # Configure AWS workspace and CloudWatch Profile
-Configure AWS credentials and configuration with a user credentails that has sufficient access to communicate with AWS CloudWatch & SSM. The Profile name used in here is what you will create and use for this monitoring and it will publish metrics to AWS CloudWatch within that profile name. If it doesn't exist, don't worry, it will create a workspace in CloudWatch. You can do all sorts of things with AWS configure - https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html.
+Configure AWS credentials and configuration with a user credentails that has sufficient access to communicate with AWS CloudWatch & SSM. The Profile name used in here is what you will create and use for this monitoring and it will publish metrics to AWS CloudWatch within that profile name. If it doesn't exist, don't worry, it will create a workspace in CloudWatch. You can do all sorts of things with AWS configure - `https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html`.
 
 ```sudo aws configure --profile AmazonCloudWatchAgent```
 ```
@@ -25,7 +25,7 @@ Default output format [None]: json
 ```
 
 # Create CloudWatch Configuration File using Wizard
-Run the Wizard to create CloudWatch Configuration file. It will ask you series of questions and based on the response it will create a configuration file. You can also get Wizard to store the config file in AWS Parameter Store (but don't have to) for future use or further rollout. For more details refer to https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/create-cloudwatch-agent-configuration-file-wizard.html
+Run the Wizard to create CloudWatch Configuration file. It will ask you series of questions and based on the response it will create a configuration file. You can also get Wizard to store the config file in AWS Parameter Store (but don't have to) for future use or further rollout. For more details refer to `https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/create-cloudwatch-agent-configuration-file-wizard.html`
 
 ```sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-config-wizard```
 
@@ -33,7 +33,7 @@ This will create a configurairon file in JSON format which you can view and modi
 ```/opt/aws/amazon-cloudwatch-agent/bin/config.json```
 
 # Start the CloudWatch Agent
-In this step you will start the agent. For more details see https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Agent-commandline-fleet.html.
+In this step you will start the agent. For more details see `https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Agent-commandline-fleet.html`.
 You should carefully watch the output for any errors as that will be important to resolve any issue experienced here.
 
 

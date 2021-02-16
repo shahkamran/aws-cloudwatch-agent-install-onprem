@@ -25,7 +25,8 @@ Default output format [None]: json
 ```
 
 # Create CloudWatch Configuration File using Wizard
-Run the Wizard to create CloudWatch Configuration file. It will ask you series of questions and based on the response it will create a configuration file. You can also get Wizard to store the config file in AWS Parameter Store (but don't have to) for future use or further rollout. For more details refer to `https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/create-cloudwatch-agent-configuration-file-wizard.html`
+Run the Wizard to create CloudWatch Configuration file. It will ask you series of questions and based on the response it will create a configuration file. You can also get Wizard to store the config file in AWS Parameter Store (but don't have to) for future use or further rollout. For more details refer to `https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/create-cloudwatch-agent-configuration-file-wizard.html`.
+You do not have to use CollectD or other Statistics/ Network performance daemons and will still get basic OS metrics.
 
 ```sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-config-wizard```
 
@@ -44,7 +45,7 @@ You should carefully watch the output for any errors as that will be important t
 ```sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -m onPremise -a status```
 
 # Errors and troubleshooting
-I had an error to do with CollectD file or directory not found. I could touch the locations and get the agent running but for it to work correctly I installed collectd separately using following command on Ubuntu server.
+I had an error to do with CollectD file or directory not found. I could touch the locations and get the agent running but for it to work correctly I installed collectd separately using following command on Ubuntu server. I later removed all CollectD metrics and removed it from the config so do not need that anymore.
 
 ```sudo apt-get install collectd```
 

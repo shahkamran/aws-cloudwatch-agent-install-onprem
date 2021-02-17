@@ -44,13 +44,26 @@ You should carefully watch the output for any errors as that will be important t
 
 ```sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -m onPremise -a status```
 
-# Errors and troubleshooting
-I had an error to do with CollectD file or directory not found. I could touch the locations and get the agent running but for it to work correctly I installed collectd separately using following command on Ubuntu server. I later removed all CollectD metrics and removed it from the config so do not need that anymore.
-
-```sudo apt-get install collectd```
 
 # Verifying the metrics in CloudWatch console.
 Log into AWS Console and go to Cloudwatch.
 Select the appropriate region.
 Click on Metrics.
 Select All Metrics and look for something like ``CWAgent`` and should see all lots of metrics there.
+
+# Errors and troubleshooting
+I had an error to do with CollectD file or directory not found. I could touch the locations and get the agent running but for it to work correctly I installed collectd separately using following command on Ubuntu server. I later removed all CollectD metrics and removed it from the config so do not need that anymore.
+
+```sudo apt-get install collectd```
+
+# Remove configuration and restart again
+If for some reason you didn't like it or it didn't work, you can remove the configuraiton and start the process again. Before you start you should stop the agent and remove log and configuration files.
+
+```
+sudo systemctl stop amazon-cloudwatch-agent.service
+sudo rm /opt/aws/amazon-cloudwatch-agent/bin/config.json /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.toml /opt/aws/amazon-cloudwatch-agent/logs/amazon-cloudwatch-agent.log /opt/aws/amazon-cloudwatch-agent/logs/configuration-validation.log 
+```
+
+Once removed you can start the wizard again to generate the config.
+
+```sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-config-wizard```

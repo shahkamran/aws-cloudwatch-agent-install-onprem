@@ -1,90 +1,81 @@
 {
-        "agent": {
-                "metrics_collection_interval": 600,
-                "run_as_user": "root",
-                "logfile": "/opt/aws/amazon-cloudwatch-agent/logs/amazon-cloudwatch-agent.log"
-        },
-        "logs": {
-                "logs_collected": {
-                        "files": {
-                                "collect_list": [
-                                        {
-                                                "file_path": "/var/log/authlog",
-                                                "log_group_name": "authlog",
-                                                "log_stream_name": "{hostname}"
-                                        }
-                                ]
-                        }
-                }
-        },
-        "metrics": {
-                "namespace": "Test-CWNameSpac-01",
-                "metrics_collected": {
-                                                  "cpu": {
-                                                        "resources": [
-                                                          "*"
-                                                        ],
-                                                        "measurement": [
-                                                          {"name": "cpu_usage_nice", "unit": "Percent"}
-                                                        ],
-                                                        "totalcpu": true,
-                                                        "metrics_collection_interval": 60
-                                                  },
-                                                  "disk": {
-                                                        "resources": [
-                                                          "/"
-                                                        ],
-                                                        "measurement": [
-                                                          {"name": "free", "rename": "DISK_FREE", "unit": "Gigabytes"}
-                                                        ],
-                                                         "ignore_file_system_types": [
-                                                          "sysfs", "devtmpfs"
-                                                        ],
-                                                        "metrics_collection_interval": 60
-                                                  },
-                                                  "diskio": {
-                                                        "resources": [
-                                                          "/"
-                                                        ],
-                                                        "measurement": [
-                                                          "io_time"
-                                                        ],
-                                                        "metrics_collection_interval": 60
-                                                  },
-                                                  "swap": {
-                                                        "measurement": [
-                                                          "swap_used_percent"
-                                                        ]
-                                                  },
-                                                  "mem": {
-                                                        "measurement": [
-                                                          "mem_free"
-                                                        ],
-                                                        "metrics_collection_interval": 60
-                                                  },
-                                                  "net": {
-                                                        "resources": [
-                                                          "ens160"
-                                                        ],
-                                                        "measurement": [
-                                                          "bytes_sent",
-                                                          "bytes_recv"
-                                                        ]
-                                                  },
-                                                  "netstat": {
-                                                        "measurement": [
-                                                          "tcp_established"
-                                                        ],
-                                                        "metrics_collection_interval": 60
-                                                  },
-                                                  "processes": {
-                                                        "measurement": [
-                                                          "running"
-                                                        ]
-                                                  }
-                                        },
-                                        "append_dimensions": {
-                                                "Hostname": "{hostname}"
-                                        }
-                }
-        }
+	"agent": {
+		"metrics_collection_interval": 60,
+		"run_as_user": "root",
+		"logfile": "/opt/aws/amazon-cloudwatch-agent/logs/amazon-cloudwatch-agent.log"
+	},
+	"logs": {
+		"logs_collected": {
+			"files": {
+				"collect_list": [
+					{
+						"file_path": "/var/log/maillog",
+						"log_group_name": "maillog",
+						"log_stream_name": "{hostname}"
+					}
+				]
+			}
+		}
+	},
+	"metrics": {
+    "namespace": "Test-CWNameSpac-01",
+		"metrics_collected": {
+			"cpu": {
+				"measurement": [
+					"cpu_usage_system"
+				],
+				"metrics_collection_interval": 60,
+				"totalcpu": true
+			},
+			"disk": {
+				"measurement": [
+					"used_percent"
+				],
+				"metrics_collection_interval": 60,
+				"resources": [
+					"/"
+				]
+			},
+			"diskio": {
+				"measurement": [
+					"io_time"
+				],
+				"metrics_collection_interval": 60,
+				"resources": [
+					"/"
+				]
+			},
+			"mem": {
+				"measurement": [
+					"mem_used_percent"
+				],
+				"metrics_collection_interval": 60
+			},
+			"net": {
+				"measurement": [
+					"bytes_sent",
+					"bytes_recv"
+				],
+				"metrics_collection_interval": 60,
+				"resources": [
+					"ens160"
+				]
+			},
+			"netstat": {
+				"measurement": [
+					"tcp_established"
+				],
+				"metrics_collection_interval": 60
+			},
+			"swap": {
+				"measurement": [
+					"swap_used_percent"
+				],
+				"metrics_collection_interval": 60
+			}
+		},
+		"append_dimensions": {
+			"Hostname": "{hostname}"
+		}
+	}
+}
